@@ -65,3 +65,22 @@ void Character::Step()
 	character.Move();
 	character.Gravity();
 }
+void Character::GetMoveDirection(bool* _dirArray) 		//左右上下の当たり判定
+{
+	// 右方向のチェック
+	if (Next_x > x) {
+		_dirArray[3] = true;
+	}
+	// 左方向のチェック
+	if (Next_x < x) {
+		_dirArray[2] = true;
+	}
+	// 下方向のチェック
+	if (Next_y > y) {
+		_dirArray[1] = true;
+	}
+	// 左方向のチェック
+	if (Next_y < y) {
+		_dirArray[0] = true;
+	}
+}
