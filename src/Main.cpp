@@ -4,7 +4,7 @@
 #include"Scene/scene.h"
 #include"Common.h"
 #include"Input/Input.h"
-
+#include"Character/Character.h"
 SCENE_ID sceneID;
 int StageIndex;
 
@@ -127,13 +127,16 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 			case SCENE_INIT_PLAY:
 			{
-				
+				character.Init();
+				sceneID = SCENE_LOOP_PLAY;
 			}
 				break;
 
 			case SCENE_LOOP_PLAY:
 			{
-				
+				character.Step();
+				character.UpdatePos();
+				character.Draw();
 			}
 				break;
 
