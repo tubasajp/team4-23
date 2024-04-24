@@ -1,16 +1,9 @@
 //ウィンドウを表示するプログラム（ひな形）
 
 #include "DxLib.h"	//DXライブラリのインクルード
-#include "Common.h"
-#include "Input/Input.h"
-#include "scene/scene.h"
-#include "scene/Play/Play.h"
-#include "scene/Play/Player/Player.h"
-#include "scene/Title/Title.h"
-#include "scene/Result/Result.h"
-#include"Map/Map.h"
-
-
+#include"Scene/scene.h"
+#include"Common.h"
+#include"Input/Input.h"
 
 SCENE_ID sceneID;
 int StageIndex;
@@ -116,72 +109,55 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			//-----------------------------------------
 			case SCENE_INIT_TITLE:
 			{
-				title.InitTitle();
-				sceneID = SCENE_LOOP_TITLE;
+				
 			}
 				break;
 
 			case SCENE_LOOP_TITLE:
 			{
-				title.StepTitle();
-				title.DrawTitle();
+				
 			}
 				break;
 
 			case SCENE_FIN_TITLE:
 			{
-				title.FinTitle();
-				sceneID = SCENE_INIT_PLAY;
+				
 			}
 				break;
 
 			case SCENE_INIT_PLAY:
 			{
-				play.InitPlay();
-				map.ReadFilemap();
-				map.InitMap();
-				player.InitPlayer();
-				sceneID = SCENE_LOOP_PLAY;
+				
 			}
 				break;
 
 			case SCENE_LOOP_PLAY:
 			{
-				play.DrawPlay();
-				player.MovePlayer();
-				player.GravityPlayer();
-				player.PlayerHitMapColision();
-				player.UpdatePos();
-				map.DrawMap();	
-				player.DrawPlayer();
+				
 			}
 				break;
 
 			case SCENE_FIN_PLAY:
 			{
-				play.FinPlay();
-				player.FinPlayer();
-				sceneID = SCENE_INIT_RESULT;
+				
 			}
 				break;
 
 			case SCENE_INIT_RESULT:
 			{
-				result.InitResult();
-				sceneID = SCENE_LOOP_RESULT;
+			
 			}
 				break;
 
 			case SCENE_LOOP_RESULT:
 			{
-				result.StepResult();
-				result.DrawResult();
+			
 			}
 				break;
 
 			case SCENE_FIN_RESULT:
 			{
-				result.FinResult();
+				
 			}
 				break;
 
