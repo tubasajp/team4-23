@@ -4,7 +4,6 @@
 
 #define	SCREEN_SIZE_Y	736	// Y方向の画面サイズを指定
 
-#define GRAVITY 2
 
 #define STAGE_MAX_NUM 3
 extern int StageIndex;

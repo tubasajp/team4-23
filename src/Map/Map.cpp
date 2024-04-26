@@ -1,13 +1,14 @@
 #include"Map.h"
 #include"../Common.h"
 #include"DxLib.h"
+#include"../Character/Character.h"
 int MapHandle[16] = { 0 };									//マップチップデータを入れる配列
 int MapChipData1[MAP_CHIP_Y_NUM][MAP_CHIP_X_NUM];		//一つ目のマップ
 Map map;
 void Map::InitMap()
 {
 	//0にメインブロック
-	LoadDivGraph("Data/", 16, 4, 4, 32, 32, MapHandle);
+	LoadDivGraph("Data/Map/マップチップ透過.png", 16, 4, 4, 32, 32, MapHandle);
 }
 void Map::ReadFilemap()
 {
@@ -15,7 +16,7 @@ void Map::ReadFilemap()
 	int mapIndexY = 0;
 	FILE* fp;
 
-	fopen_s(&fp, "Data/MapDeta.csv", "r");
+	fopen_s(&fp, "Data/Map/Map1.csv", "r");
 	while (true) {
 		// 数値部分を読み込む
 		fscanf_s(fp, "%d", &MapChipData1[mapIndexY][mapIndexX]);
@@ -48,7 +49,7 @@ void Map::DrawMap()
 		for (int x = 0; x < MAP_CHIP_X_NUM;x++)
 		{
 			{
-				DrawGraph(x * 32 , y * 32 , MapHandle[MapChipData1[y][x]], true);
+				DrawGraph(x * 32, y * 32, MapHandle[MapChipData1[y][x]], true);
 			}
 		}
 	}

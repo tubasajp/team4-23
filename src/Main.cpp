@@ -5,6 +5,8 @@
 #include"Common.h"
 #include"Input/Input.h"
 #include"Character/Character.h"
+#include"Map/Map.h"
+#include"PlaySceen/PlaySceen.h"
 SCENE_ID sceneID;
 int StageIndex;
 
@@ -128,6 +130,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			case SCENE_INIT_PLAY:
 			{
 				character.Init();
+				character.InitScreen();
+				map.ReadFilemap();
+				map.InitMap();
 				sceneID = SCENE_LOOP_PLAY;
 			}
 				break;
@@ -135,8 +140,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			case SCENE_LOOP_PLAY:
 			{
 				character.Step();
+				playSceen.Character_Hit_Map();
 				character.UpdatePos();
 				character.Draw();
+				map.DrawMap();
 			}
 				break;
 

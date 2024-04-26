@@ -2,23 +2,113 @@
 #include"../Character/Character.h"
 #include"../Map/Map.h"
 #include"../PlaySceen/PlaySceen.h"
-
+#include"../Collision/Collision.h"
+PlaySceen playSceen;
 void PlaySceen::Character_Hit_Map()
 {
 	for (int y = 0; y < MAP_CHIP_Y_NUM; y++)
 	{
 		for (int x = 0; x < MAP_CHIP_X_NUM; x++)
 		{
-			
-			
+			// ★ここを考える
+				// どの方向に進んでいたかチェック
+				// ※Playerクラスに進む方向をチェックする関数を準備しています。
+
+			bool dirArray[4] = { false,false,false,false };
+			character.GetMoveDirection(dirArray);
+			// ★ここを考える
+			// 矩形の当たり判定用のデータを準備
+			// プレイヤーの情報
+			int Ax = character.GetPosX();
+			int Ay = character.GetPosY();
+			int Aw = character.GetPosW();
+			int Ah = character.GetPosH();
+
+			// オブジェクトの情報
+			int Bx = x * 32;
+			int By = y * 32;
+			int Bw = MAPCHIP_SIZW;
+			int Bh = MAPCHIP_SIZH;
+
+			if (MapChipData1[y][x] == 8)
+				continue;
+			{
+				Ay = character.GetPosY();
+				Ax = character.GetNextPosX();
+				if (Collision::IsHitRect(Ax, Ay, Aw, Ah, Bx, By, Bw, Bh))
+				{
+					if (dirArray[2]) {
+						// ★ここを考える
+						// めり込み量を計算する
+						int overlap = Bx + Bw - Ax;
+						character.SetNextPosX(Ax + overlap);
+					}
+					// 右方向の修正
+					//マリオの右側
+					if (dirArray[3]) {
+						// ★ここを考える
+						// めり込み量を計算する
+						int overlap = Ax + Aw - Bx;
+						character.SetNextPosX(Ax - overlap);
+					}
+				}
+			}
+
 		}
 	}
+
 	for (int y = 0; y < MAP_CHIP_Y_NUM; y++)
 	{
 		for (int x = 0; x < MAP_CHIP_X_NUM; x++)
 		{
-		
+			
+			bool dirArray[4] = { false,false,false,false };
+			character.GetMoveDirection(dirArray);
 
+			// ★ここを考える
+			// 矩形の当たり判定用のデータを準備
+			// プレイヤーの情報
+			int Ax = character.GetPosX();
+			int Ay = character.GetPosY();
+			int Aw = character.GetPosW();
+			int Ah = character.GetPosH();
+
+			// オブジェクトの情報
+			int Bx = x * 32;
+			int By = y * 32;
+			int Bw = MAPCHIP_SIZW;
+			int Bh = MAPCHIP_SIZH;
+			if (MapChipData1[y][x] == 8)
+				continue;
+
+			{
+				DrawBox(Bx, By, Bx + Bw, By + Bh, GetColor(255, 255, 255), false);
+				DrawBox(Ax , Ay, Ax + Aw , Ay + Ah, GetColor(255, 255, 255), false);
+				// ※Y方向のみに移動したと仮定した座標で当たり判定をチェックします
+				Ay = character.GetNextPosY();
+				Ax = character.GetNextPosX();
+
+				// 当たっているかチェック
+				if (Collision::IsHitRect(Ax, Ay, Aw, Ah, Bx, By, Bw, Bh)) {
+					// 左方向の修正
+					//マリオの左側
+					if (dirArray[0]) {
+						// ★ここを考える
+						// めり込み量を計算する
+						int overlap = By + Bh - Ay;
+						character.SetNextPosY((Ay + overlap));
+					}
+					// 右方向の修正
+					//マリオの右側
+					if (dirArray[1]) {
+						// ★ここを考える
+						// めり込み量を計算する
+						int overlap = Ay + Ah - By;
+						character.SetNextPosY (Ay - overlap);
+					}
+				}
+			}
 		}
 	}
+	
 }
