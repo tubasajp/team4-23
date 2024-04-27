@@ -82,8 +82,8 @@ void PlaySceen::Character_Hit_Map()
 				continue;
 
 			{
-				DrawBox(Bx, By, Bx + Bw, By + Bh, GetColor(255, 255, 255), false);
-				DrawBox(Ax , Ay, Ax + Aw , Ay + Ah, GetColor(255, 255, 255), false);
+				DrawBox(Bx-character.GetScreenX(), By- character.GetScreenY(), Bx + Bw- character.GetScreenX(), By + Bh- character.GetScreenY(), GetColor(255, 255, 255), false);
+				DrawBox(Ax - character.GetScreenX(), Ay - character.GetScreenY(), Ax + Aw - character.GetScreenX(), Ay + Ah - character.GetScreenY(), GetColor(255, 255, 255), false);
 				// ※Y方向のみに移動したと仮定した座標で当たり判定をチェックします
 				Ay = character.GetNextPosY();
 				Ax = character.GetNextPosX();

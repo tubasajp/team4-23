@@ -10,13 +10,13 @@ const int GRAVITY_MAX = 8;	//重力の上限
 Character character;
 void Character::Init()
 {
-	x = 0;		
-	y = 0;
+	x = 550;		
+	y = 800;					//初期値
 	h = 32;			
 	w = 32;
 	GravitySpeed = 0;			//重力のスピード
-	Next_x = 0;					//次の座標
-	Next_y - 0;					//次の座標
+	Next_x = x;					//次の座標
+	Next_y = y;					//次の座標
 	handle = LoadGraph("Data/");
 	Isuse = false;				
 	JunpIsUse = false;			//ジャンプ使用フラグ
@@ -27,10 +27,15 @@ void Character::Move()
 	{
 		GravitySpeed -= JUNP_POWER;
 	}
-	if (IsKeyKeep(KEY_INPUT_A))
+	//xが155まで行ったら操作不能
+	if (x > 155)
 	{
-		Next_x-= MOVE_SPEED;
+		if (IsKeyKeep(KEY_INPUT_A))
+		{
+			Next_x -= MOVE_SPEED;
+		}
 	}
+	
 	if (IsKeyKeep(KEY_INPUT_D))
 	{
 		Next_x += MOVE_SPEED;
@@ -53,9 +58,7 @@ void Character::Gravity()
 void Character::Draw()
 {
 	DrawFormatString(100, 50, GetColor(255, 0, 0), "x = %d  y = %d", x,y);
-
-	/*DrawBox(x-ScreenX ,y - ScreenY,x+w - ScreenX,y+h - ScreenY, GetColor(255, 255, 255), false);*/
-	DrawRotaGraph(x, y, 1.0, 0.0, handle, true);
+	DrawRotaGraph(x- ScreenX, y- ScreenY, 1.0, 0.0, handle, true);
 }
 void Character::UpdatePos()
 {
@@ -89,30 +92,28 @@ void Character::GetMoveDirection(bool* _dirArray) 		//左右上下の当たり判定
 }
 void Character::InitScreen() 						//スクリーン座標の初期化
 {
-	ScreenPosX = x - SCREEN_SIZE_X / 2;						//X座標のスクリーンX座標比較
-	ScreenPosY = y - SCREEN_SIZE_Y / 2;						//Y座標のスクリーンY座標比較
 	ScreenX = x - SCREEN_SIZE_X / 2;
-	ScreenY = y - SCREEN_SIZE_Y / 2;
+	ScreenY = 226;
+	ScreenPosX = ScreenX;
+	ScreenPosY = ScreenY;
 }
 void Character::StepScreen()						//スクリーンのワールド座標
 {
-	ScreenX = x - SCREEN_SIZE_X / 2;						//X座標のスクリーンX座標比較
-	ScreenY = y - SCREEN_SIZE_Y / 2;						//Y座標のスクリーンY座標比較
+	ScreenPosX = x - SCREEN_SIZE_X / 2;						//X座標のスクリーンX座標比較
+	ScreenPosY = y - SCREEN_SIZE_Y / 2;						//Y座標のスクリーンY座標比較
 
 	DrawFormatString(100, 140, GetColor(255, 0, 0), "ScreenX=%d", ScreenX);
 	DrawFormatString(100, 160, GetColor(255, 0, 0), "Screen=%d", ScreenY);
 	////スクリーンXをついてくる動かす処理
-	//
-	///*if (x > 365 && x < 4500)*/
-	//{
-	//	if (ScreenX > ScreenPosX + 100)
-	//	{
-	//		ScreenX -= SCREEN_SPEED;
-	//	}
-	//	if (ScreenX < ScreenPosX - 200)
-	//	{
-	//		ScreenX += SCREEN_SPEED;
-	//	}
-	//}
-	//
+	if(ScreenX>0)
+	{
+		if (ScreenX > ScreenPosX + 400)
+		{
+			ScreenX -= 10;
+		}
+		if (ScreenX < ScreenPosX + 150)
+		{
+			ScreenX += 10;
+		}
+	}
 }

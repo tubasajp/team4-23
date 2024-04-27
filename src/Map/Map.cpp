@@ -49,7 +49,7 @@ void Map::DrawMap()
 		for (int x = 0; x < MAP_CHIP_X_NUM;x++)
 		{
 			{
-				DrawGraph(x * 32, y * 32, MapHandle[MapChipData1[y][x]], true);
+				/*DrawGraph(x * 32 - character.GetScreenX(), y * 32 - character.GetScreenY(), MapHandle[MapChipData1[y][x]], true);*/
 			}
 		}
 	}
