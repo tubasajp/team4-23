@@ -3,12 +3,23 @@
 #include"../Map/Map.h"
 #include"../PlaySceen/PlaySceen.h"
 #include"../Collision/Collision.h"
+const int SQUARE_Y = 5;		//現在の位置からY軸の当たり判定の範囲を設定する
+const int SQUARE_X = 10;	//現在の位置からX軸の当たり判定の範囲を設定する
 PlaySceen playSceen;
 void PlaySceen::Character_Hit_Map()
 {
-	for (int y = 0; y < MAP_CHIP_Y_NUM; y++)
+	DrawFormatString(100, 180, GetColor(255, 0, 0), "HitSquareX=%d", character.GetHitSquareX());
+	DrawFormatString(100, 200, GetColor(255, 0, 0), "HitSquareY=%d", character.GetHitSquareY());
+	character.StepHitSquare();
+	for (int y = character.GetHitSquareY() - SQUARE_Y; character.GetHitSquareY() + SQUARE_Y > y;y++)
 	{
-		for (int x = 0; x < MAP_CHIP_X_NUM; x++)
+		//配列を超えたら
+		if (character.GetHitSquareY() > 45)
+			continue;
+		//配列を超えたら
+		if (character.GetHitSquareY() < 1)
+			continue;
+		for (int x = character.GetHitSquareX() - SQUARE_X; character.GetHitSquareX() + SQUARE_X > x; x++)
 		{
 			// ★ここを考える
 				// どの方向に進んでいたかチェック
@@ -30,7 +41,7 @@ void PlaySceen::Character_Hit_Map()
 			int Bw = MAPCHIP_SIZW;
 			int Bh = MAPCHIP_SIZH;
 
-			if (MapChipData1[y][x] == 8)
+			if (MapChipData1[y][x] == 3)
 				continue;
 			{
 				Ay = character.GetPosY();
@@ -56,10 +67,15 @@ void PlaySceen::Character_Hit_Map()
 
 		}
 	}
-
-	for (int y = 0; y < MAP_CHIP_Y_NUM; y++)
+	for (int y = character.GetHitSquareY() - SQUARE_Y; character.GetHitSquareY() + SQUARE_Y > y; y++)
 	{
-		for (int x = 0; x < MAP_CHIP_X_NUM; x++)
+		//配列を超えたら
+		if (character.GetHitSquareY() > 45)
+			continue;
+		//配列を超えたら
+		if (character.GetHitSquareY() < 1)
+			continue;
+		for (int x = character.GetHitSquareX() - SQUARE_X; character.GetHitSquareX() + SQUARE_X > x; x++)
 		{
 			
 			bool dirArray[4] = { false,false,false,false };
@@ -78,7 +94,7 @@ void PlaySceen::Character_Hit_Map()
 			int By = y * 32;
 			int Bw = MAPCHIP_SIZW;
 			int Bh = MAPCHIP_SIZH;
-			if (MapChipData1[y][x] == 8)
+			if (MapChipData1[y][x] == 3)
 				continue;
 
 			{

@@ -17,6 +17,8 @@ void Character::Init()
 	GravitySpeed = 0;			//重力のスピード
 	Next_x = x;					//次の座標
 	Next_y = y;					//次の座標
+	HitSquareX = 0;				//マップとキャラの当たり判定を任意に調整するX
+	HitSquareY = 0;				//マップとキャラの当たり判定を任意に調整するY
 	handle = LoadGraph("Data/");
 	Isuse = false;				
 	JunpIsUse = false;			//ジャンプ使用フラグ
@@ -116,4 +118,9 @@ void Character::StepScreen()						//スクリーンのワールド座標
 			ScreenX += 10;
 		}
 	}
+}
+void Character::StepHitSquare()					//当たり判定を調節する位置
+{
+	HitSquareX = x / 32;
+	HitSquareY = y / 32;
 }

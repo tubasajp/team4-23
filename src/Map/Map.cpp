@@ -2,13 +2,13 @@
 #include"../Common.h"
 #include"DxLib.h"
 #include"../Character/Character.h"
-int MapHandle[16] = { 0 };									//マップチップデータを入れる配列
+int MapHandle[4] = { 0 };									//マップチップデータを入れる配列
 int MapChipData1[MAP_CHIP_Y_NUM][MAP_CHIP_X_NUM];		//一つ目のマップ
 Map map;
 void Map::InitMap()
 {
 	//0にメインブロック
-	LoadDivGraph("Data/Map/マップチップ透過.png", 16, 4, 4, 32, 32, MapHandle);
+	LoadDivGraph("Data/Map/MAP正規.png", 4, 2, 2, 32, 32, MapHandle);
 }
 void Map::ReadFilemap()
 {
@@ -49,7 +49,7 @@ void Map::DrawMap()
 		for (int x = 0; x < MAP_CHIP_X_NUM;x++)
 		{
 			{
-				/*DrawGraph(x * 32 - character.GetScreenX(), y * 32 - character.GetScreenY(), MapHandle[MapChipData1[y][x]], true);*/
+				DrawGraph(x * 32 - character.GetScreenX(), y * 32 - character.GetScreenY(), MapHandle[MapChipData1[y][x]], true);
 			}
 		}
 	}
