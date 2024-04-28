@@ -187,6 +187,7 @@ void PlaySceen::Map_erase()
 	{
 		DrawFormatString(100, 240, GetColor(255, 0, 0), "‘«êÁ‚¦‚Ü‚·");
 		//‘«êÁ‚¦‚é
+		MapChipData1[29][49] = 3;
 		MapChipData1[29][50] = 3;
 		MapChipData1[29][51] = 3;
 		MapChipData1[29][52] = 3;
@@ -196,22 +197,22 @@ void PlaySceen::Map_erase()
 }
 void PlaySceen::Character_Hit_Enemykumo()
 {
-	for (int i = 0; i < TRAP_MAX; i++)
+	for (int i = 0; i < KUMO_MAX; i++)
 	{
 		int Ax = character.GetPosX();
 		int Ay = character.GetPosY();
 		int Aw = character.GetPosW();
 		int Ah = character.GetPosH();
 
-		int Bx = goal.GetX();
-		int By = goal.GetY();
-		int Bw = goal.GetW();
-		int Bh = goal.GetH();
+		int Bx = kumo[i].x;
+		int By = kumo[i].y;
+		int Bw = kumo[i].h;
+		int Bh = kumo[i].w;
 		DrawBox(Bx - character.GetScreenX(), By - character.GetScreenY(), Bx + Bw - character.GetScreenX(), By + Bh - character.GetScreenY(), GetColor(255, 255, 255), false);
 		if (Collision::IsHitRect(Ax, Ay, Aw, Ah, Bx, By, Bw, Bh))
 		{
 			DrawFormatString(100, 270, GetColor(255, 0, 0), "‰_ƒqƒbƒg");
-			sceneID = SCENE_ID_INIT_CLEAR;
+			character.SetHp(0);
 		}
 	}
 }
