@@ -100,6 +100,7 @@ void PlaySceen::Character_Hit_Map()
 			{
 				DrawBox(Bx-character.GetScreenX(), By- character.GetScreenY(), Bx + Bw- character.GetScreenX(), By + Bh- character.GetScreenY(), GetColor(255, 255, 255), false);
 				DrawBox(Ax - character.GetScreenX(), Ay - character.GetScreenY(), Ax + Aw - character.GetScreenX(), Ay + Ah - character.GetScreenY(), GetColor(255, 255, 255), false);
+				DrawFormatString(100, 90, GetColor(255, 0, 0), " GetJunpcount= %d ", character.GetJunpcount());
 				// ※Y方向のみに移動したと仮定した座標で当たり判定をチェックします
 				Ay = character.GetNextPosY();
 				Ax = character.GetNextPosX();
@@ -111,6 +112,8 @@ void PlaySceen::Character_Hit_Map()
 					if (dirArray[0]) {
 						// ★ここを考える
 						// めり込み量を計算する
+						character.SetGravitySpeed(0);
+						
 						int overlap = By + Bh - Ay;
 						character.SetNextPosY((Ay + overlap));
 					}
@@ -121,6 +124,8 @@ void PlaySceen::Character_Hit_Map()
 						// めり込み量を計算する
 						int overlap = Ay + Ah - By;
 						character.SetNextPosY (Ay - overlap);
+						character.SetJunpcount(0);		//足場に触れたらリセットする
+						character.StepOnJunp();			//足場に触れていないとジャンプできない
 					}
 				}
 			}

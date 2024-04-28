@@ -3,9 +3,8 @@
 class Character
 {
 private:
-	int x, y, h, w, handle,GravitySpeed,Next_x,Next_y, ScreenX, ScreenY, ScreenPosX, ScreenPosY,HitSquareX, HitSquareY;
+	int x, y, h, w, handle,GravitySpeed,Next_x,Next_y, ScreenX, ScreenY, ScreenPosX, ScreenPosY,HitSquareX, HitSquareY,Junpcount,OnJunp;
 	bool Isuse;
-	bool JunpIsUse;
 public:
 	void Init();		//初期化
 	void Move();		//移動
@@ -17,6 +16,7 @@ public:
 	void InitScreen();						//スクリーン座標の初期化
 	void StepScreen();						//スクリーンのワールド座標
 	void StepHitSquare();					//当たり判定を調節する位置
+	void StepOnJunp();
 	int  GetPosX() { return x; }
 	int  GetPosY() { return y; }
 	int  GetPosH() { return h; }
@@ -31,5 +31,8 @@ public:
 	int GetHitSquareY() { return HitSquareY; }
 	int SetHitSquareX(int a) { HitSquareX = a; return HitSquareX; }
 	int SetHitSquareY(int a) { HitSquareY = a; return HitSquareY;  }
+	int SetJunpcount(int a) { Junpcount = a; return Junpcount; }
+	int GetJunpcount() { return Junpcount; }
+	int SetGravitySpeed(int a) { GravitySpeed = a; return GravitySpeed; }
 };
 extern Character character;

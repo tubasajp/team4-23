@@ -21,14 +21,24 @@ void Character::Init()
 	HitSquareY = 0;				//マップとキャラの当たり判定を任意に調整するY
 	handle = LoadGraph("Data/");
 	Isuse = false;				
-	JunpIsUse = false;			//ジャンプ使用フラグ
+	Junpcount = 0;			//ジャンプ使用フラグ
 }
 void Character::Move()
 {
+	DrawFormatString(100, 70, GetColor(255, 0, 0), "GravitySpeed %d ",GravitySpeed);
 	if (IsKeyPush(KEY_INPUT_W))
 	{
-		GravitySpeed -= JUNP_POWER;
+		if (Junpcount < 3)
+		{
+			Junpcount++;
+		}
+		
+		if (Junpcount == 2)
+		{
+			GravitySpeed = -12;
+		}
 	}
+	
 	//xが155まで行ったら操作不能
 	if (x > 155)
 	{
@@ -123,4 +133,19 @@ void Character::StepHitSquare()					//当たり判定を調節する位置
 {
 	HitSquareX = x / 32;
 	HitSquareY = y / 32;
+}
+void Character::StepOnJunp()
+{
+	if (IsKeyPush(KEY_INPUT_W))
+	{
+		if (Junpcount < 3)
+		{
+			Junpcount++;
+		}
+		
+		if (Junpcount == 1)
+		{
+			GravitySpeed -= JUNP_POWER;
+		}
+	}
 }
