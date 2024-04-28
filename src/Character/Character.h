@@ -4,7 +4,7 @@ class Character
 {
 private:
 	int x, y, h, w, handle,GravitySpeed,Next_x,Next_y, ScreenX, ScreenY, ScreenPosX, ScreenPosY,HitSquareX, HitSquareY,Junpcount,OnJunp;
-	bool Isuse;
+	bool Isuse,DebugMode;
 public:
 	void Init();		//初期化
 	void Move();		//移動
@@ -16,7 +16,9 @@ public:
 	void InitScreen();						//スクリーン座標の初期化
 	void StepScreen();						//スクリーンのワールド座標
 	void StepHitSquare();					//当たり判定を調節する位置
+	void DebugStep();
 	void StepOnJunp();
+	void SwitchDebug();
 	int  GetPosX() { return x; }
 	int  GetPosY() { return y; }
 	int  GetPosH() { return h; }
