@@ -10,7 +10,7 @@ const int GRAVITY_MAX = 8;	//重力の上限
 Character character;
 void Character::Init()
 {
-	x = 600;		
+	x = 384;		
 	y = 800;					//初期値
 	h = 32;			
 	w = 32;
@@ -20,7 +20,8 @@ void Character::Init()
 	HitSquareX = 0;				//マップとキャラの当たり判定を任意に調整するX
 	HitSquareY = 0;				//マップとキャラの当たり判定を任意に調整するY
 	handle = LoadGraph("Data/");
-	Isuse = false;				
+	Isuse = false;
+	DebugMode = true;
 	Junpcount = 0;			//ジャンプ使用フラグ
 }
 void Character::Move()
@@ -79,8 +80,16 @@ void Character::UpdatePos()
 }
 void Character::Step()
 {
-	character.Move();
-	character.Gravity();
+	SwitchDebug();
+	if (DebugMode == false)
+	{
+		character.Move();
+		character.Gravity();
+	}
+	else
+		DebugStep();
+	
+	
 	character.StepScreen();
 }
 void Character::GetMoveDirection(bool* _dirArray) 		//左右上下の当たり判定
@@ -104,8 +113,8 @@ void Character::GetMoveDirection(bool* _dirArray) 		//左右上下の当たり判定
 }
 void Character::InitScreen() 						//スクリーン座標の初期化
 {
-	ScreenX = x - SCREEN_SIZE_X / 2;
-	ScreenY = 226;
+	ScreenX =310;
+	ScreenY = 216;
 	ScreenPosX = ScreenX;
 	ScreenPosY = ScreenY;
 }
@@ -147,5 +156,37 @@ void Character::StepOnJunp()
 		{
 			GravitySpeed -= JUNP_POWER;
 		}
+	}
+}
+void Character::DebugStep()
+{
+	if (IsKeyKeep(KEY_INPUT_W))
+	{
+		Next_y -= MOVE_SPEED;
+	}
+	if (IsKeyKeep(KEY_INPUT_S))
+	{
+		Next_y += MOVE_SPEED;
+	}
+	if (IsKeyKeep(KEY_INPUT_A))
+	{
+		Next_x -= MOVE_SPEED;
+	}
+
+	if (IsKeyKeep(KEY_INPUT_D))
+	{
+		Next_x += MOVE_SPEED;
+	}
+}
+void Character::SwitchDebug()
+{
+	if (IsKeyPush(KEY_INPUT_1))
+	{
+		DebugMode = true;
+		
+	}
+	if (IsKeyPush(KEY_INPUT_2))
+	{
+		DebugMode = false;
 	}
 }

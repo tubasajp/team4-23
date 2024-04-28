@@ -8,6 +8,7 @@ Map map;
 void Map::InitMap()
 {
 	//0にメインブロック
+	ReadFilemap();
 	LoadDivGraph("Data/Map/MAP正規.png", 4, 2, 2, 32, 32, MapHandle);
 }
 void Map::ReadFilemap()

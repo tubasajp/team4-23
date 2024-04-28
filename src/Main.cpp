@@ -2,7 +2,6 @@
 
 #include "DxLib.h"	//DXライブラリのインクルード
 #include"Scene/Scene.h"
-#include"../src/Play/Play.h"
 #include"Input/Input.h"
 #include"Character/Character.h"
 #include"Map/Map.h"
@@ -101,7 +100,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			{
 				character.Init();
 				character.InitScreen();
-				map.ReadFilemap();
 				map.InitMap();
 				sceneID = SCENE_ID_LOOP_TITLE;
 			}
@@ -112,8 +110,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 				character.Step();
 				playSceen.Character_Hit_Map();
 				character.UpdatePos();
-				character.Draw();
 				map.DrawMap();
+				character.Draw();
+				
 			}
 			break;
 
