@@ -14,6 +14,6 @@ void Title::DrawTitle()
 	DrawGraph(x, y, handle,true);
 	if (IsKeyPush(KEY_INPUT_RETURN))
 	{
-		sceneID = SCENE_INIT_PLAY;
+
 	}
 }

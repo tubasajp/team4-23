@@ -27,6 +27,3 @@ enum SCENE_PLAY_ID
 	ID_PLAY_NOW,
 	ID_PLAY_FINSH,
 };
-int g_CurrentSceneID = SCENE_ID_INIT_PLAY;
-extern int g_CurrentSceneID;
-extern int g_CurrentScenePlayID;

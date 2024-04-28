@@ -2,15 +2,35 @@
 
 #include "DxLib.h"	//DXライブラリのインクルード
 #include"Scene/Scene.h"
-#include"../src/parasol/parasol.h"
-#include"../src/Cracter/Character.h"
-#include"../src/Input_struct/input.h"
-#include"../src/Item/Coin/Coin.h"
 #include"../src/Play/Play.h"
-//#include"src/Character.h"
-//#include"src/input.h"
+#include"Input/Input.h"
+#include"Character/Character.h"
+#include"Map/Map.h"
+#include"PlaySceen/PlaySceen.h"
 
 
+#define FRAME_RATE (60)
+
+
+#define FRAME_TIME (1000/FRAME_RATE)
+
+struct FrameRateInfo
+{
+	int currentTime;    
+	int lastFrameTime;  
+	int count;          
+	int calcFpsTime;   
+	float fps;         
+};
+
+
+FrameRateInfo frameRateInfo;
+
+
+void CalcFPS();
+
+
+void DrawFPS();
 // Win32アプリケーションは WinMain関数 から始まる
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
@@ -30,54 +50,104 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	
 	//-----------------------------------------
 	//一番最初に１回だけやる処理をここに書く
-	
+	SCENE_ID sceneID= SCENE_ID_INIT_TITLE;
 	//-----------------------------------------
 
 	//ゲームメインループ
 	while (ProcessMessage() != -1)
 	{
-		if (CheckHitKey(KEY_INPUT_ESCAPE) == 1)
+
+		Sleep(1);  //?V?X?e???????????
+
+		//??????????擾
+		frameRateInfo.currentTime = GetNowCount();
+
+		//???????[?v???
+		//??????????AFPS??v?Z?????????????
+		if (frameRateInfo.calcFpsTime == 0.0f)
 		{
-			//エスケープキーが押されたら終了
+			frameRateInfo.calcFpsTime = frameRateInfo.currentTime;
+			frameRateInfo.fps = (float)FRAME_RATE;
+		}
+
+
+		//??????????A?O???t???[???????
+		//1000/60?~???b(1/60?b)???o?????????珈???????s????
+		if (frameRateInfo.currentTime - frameRateInfo.lastFrameTime >= FRAME_TIME)
+		{
+			//?t???[?????s?????????X?V
+			frameRateInfo.lastFrameTime = frameRateInfo.currentTime;
+
+			//?t???[???????J?E???g
+			frameRateInfo.count++;
+
+			if (CheckHitKey(KEY_INPUT_ESCAPE) == 1)
+			{
+				//?G?X?P?[?v?L?[??????????I??
+				break;
+			}
+
+			//????\?????????????????
+			ClearDrawScreen();
+
+			StepInput();
+
+			//-----------------------------------------
+			//????????Q?[????{??????????????
+			switch (sceneID)
+			{
+				//-----------------------------------------
+			case SCENE_ID_INIT_TITLE:
+			{
+				character.Init();
+				character.InitScreen();
+				map.ReadFilemap();
+				map.InitMap();
+				sceneID = SCENE_ID_LOOP_TITLE;
+			}
 			break;
-		}
 
-		//画面に表示されたものを初期化
-		ClearDrawScreen();
+			case SCENE_ID_LOOP_TITLE:
+			{
+				character.Step();
+				playSceen.Character_Hit_Map();
+				character.UpdatePos();
+				character.Draw();
+				map.DrawMap();
+			}
+			break;
 
-		//-----------------------------------------
-		//ここからゲームの本体を書くことになる
-		//-----------------------------------------
-		
-		switch (g_CurrentSceneID)
-		{
-		case SCENE_ID_INIT_PLAY:
-		{
-			InitInput();		//入力の初期化
-			InitCharacter();	//キャラクターの初期化
-			InitCoin();			//コインの初期化
-			Initparasol();		//パラソルの初期化
-			g_CurrentSceneID = SCENE_ID_LOOP_PLAY;
-		}
-		break;
-		case SCENE_ID_LOOP_PLAY:
-		{
-			StepInput();				//キーの記憶
-			StepCharacter();			//キャラクターの移動
-			StepCharacterGravity();		//キャラクターの重力
-			Stepparasol();
-			Character_Hit_Coin();		//キャラクターとコインの当たり判定
-			StepCharacterDraw();		//キャラクターの描画
-			DrawCoin();					//コインの描画
-			Drawparasol();				//パラソルの描画
-		}
-		break;
-		}
-		//-----------------------------------------
-		//ループの終わりに
-		//フリップ関数
-		ScreenFlip();
+			case SCENE_ID_INIT_PLAY:
+			{
 
+			}
+			break;
+
+			case SCENE_ID_LOOP_PLAY:
+			{
+
+			}
+			break;
+
+			default:
+				break;
+
+			}
+
+
+			//-----------------------------------------
+
+			//FPS?v?Z
+			CalcFPS();
+
+			//FPS?\??
+			DrawFPS();
+
+
+			//???[?v??I????
+			//?t???b?v???
+			ScreenFlip();
+		}
 	}
 
 	//-----------------------------------------
@@ -91,3 +161,34 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	return 0;
 }
 
+void CalcFPS()
+{
+
+	int difTime = frameRateInfo.currentTime - frameRateInfo.calcFpsTime;
+
+
+	if (difTime > 1000)
+	{
+
+		float frameCount = (float)(frameRateInfo.count * 1000.0f);
+
+
+		frameRateInfo.fps = frameCount / difTime;
+
+
+		frameRateInfo.fps = frameCount / difTime;
+
+
+		frameRateInfo.count = 0;
+
+
+		frameRateInfo.calcFpsTime = frameRateInfo.currentTime;
+	}
+}
+
+void DrawFPS()
+{
+	unsigned int color = GetColor(255, 30, 30);
+	DrawFormatString(0, 0, color, "FPS[%.2f]", frameRateInfo.fps);
+
+}
