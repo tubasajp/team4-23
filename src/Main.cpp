@@ -8,6 +8,10 @@
 #include"PlaySceen/PlaySceen.h"
 #include"Trap/Trap.h"
 #include"Scene/Gameover/Gameover.h"
+#include"mozi/mozi.h"
+#include"../src/Scene/Title/Title.h"
+#include"../src/MapChipGoal/MapChipGoal.h"
+#include"Scene/Clear/Clear.h"
 #define FRAME_RATE (60)
 #define FRAME_TIME (1000/FRAME_RATE)
 struct FrameRateInfo
@@ -94,13 +98,17 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 				//-----------------------------------------
 			case SCENE_ID_INIT_TITLE:
 			{
-				
+				mozi.Init();
+				title.InitTitle();
+				sceneID = SCENE_ID_LOOP_TITLE;
 			}
 			break;
 
 			case SCENE_ID_LOOP_TITLE:
 			{
-				
+				mozi.Step();
+				title.DrawTitle();
+				mozi.Draw();
 				
 			}
 			break;
@@ -111,6 +119,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 				character.InitScreen();
 				map.InitMap();
 				trapInit();
+				goal.Init();
 				sceneID = SCENE_ID_LOOP_PLAY;
 			}
 			break;
@@ -119,7 +128,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			{
 				character.Step();
 				playSceen.Step();
+				TrapMove();
 				character.UpdatePos();
+				goal.Draw();
 				map.DrawMap();
 				trapDraw();
 				character.Draw();
@@ -128,23 +139,32 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			break;
 			case SCENE_ID_INIT_CLEAR:
 			{
-
+				mozi.Init();
+				Clear.Init();
+				sceneID = SCENE_ID_LOOP_CLEAR;
 			}
 			break;
 			case SCENE_ID_LOOP_CLEAR:
 			{
-
+				mozi.Step();
+				Clear.Draw();
+				mozi.Draw();
+				
 			}
 			break;
 			case SCENE_ID_INIT_GAMEOVER:
 			{
 				gameover.Init();
+				mozi.Init();
 				sceneID = SCENE_ID_LOOP_GAMEOVER;
 			}
 			break;
 			case SCENE_ID_LOOP_GAMEOVER:
 			{
+				mozi.Step();
+				
 				gameover.Draw();
+				mozi.Draw();
 			}
 			break;
 			default:

@@ -8,6 +8,7 @@ const int JUNP_POWER = 20;	//ジャンプ力
 const int GRAVITY_SPEED = 1;		//常にかかる重力
 const int SCREEN_SPEED = 10;	//スクリーンの移動力
 const int GRAVITY_MAX = 8;	//重力の上限
+const int Deth_Line = 950;	
 Character character;
 void Character::Init()
 {
@@ -90,9 +91,9 @@ void Character::Step()
 	}
 	else
 		DebugStep();
-	
-	
+
 	character.StepScreen();
+	Dead_Line();
 }
 void Character::GetMoveDirection(bool* _dirArray) 		//左右上下の当たり判定
 {
@@ -200,6 +201,13 @@ void Character::SwitchDebug()
 void  Character::Dead_or_Alive()
 {
 	if (Hp == 0)
+	{
+		sceneID = SCENE_ID_INIT_GAMEOVER;
+	}
+}
+void Character::Dead_Line()
+{
+	if (y > Deth_Line)
 	{
 		sceneID = SCENE_ID_INIT_GAMEOVER;
 	}

@@ -4,6 +4,8 @@
 #include"../PlaySceen/PlaySceen.h"
 #include"../Collision/Collision.h"
 #include"../Trap/Trap.h"
+#include"../MapChipGoal/MapChipGoal.h"
+#include"../Scene/Scene.h"
 
 const int SQUARE_Y = 5;		//現在の位置からY軸の当たり判定の範囲を設定する
 const int SQUARE_X = 10;	//現在の位置からX軸の当たり判定の範囲を設定する
@@ -16,7 +18,7 @@ void PlaySceen::Character_Hit_Map()
 	for (int y = character.GetHitSquareY() - SQUARE_Y; character.GetHitSquareY() + SQUARE_Y > y;y++)
 	{
 		//配列を超えたら
-		if (character.GetHitSquareY() > 45)
+		if (character.GetHitSquareY() > 28)
 			continue;
 		//配列を超えたら
 		if (character.GetHitSquareY() < 1)
@@ -72,7 +74,7 @@ void PlaySceen::Character_Hit_Map()
 	for (int y = character.GetHitSquareY() - SQUARE_Y; character.GetHitSquareY() + SQUARE_Y > y; y++)
 	{
 		//配列を超えたら
-		if (character.GetHitSquareY() > 45)
+		if (character.GetHitSquareY() > 28)
 			continue;
 		//配列を超えたら
 		if (character.GetHitSquareY() < 1)
@@ -155,8 +157,46 @@ void PlaySceen::Character_Hit_Trap()
 		}
 	}
 }
+void PlaySceen::Character_Hit_Goal()
+{
+	for (int i = 0; i < TRAP_MAX; i++)
+	{
+		int Ax = character.GetPosX();
+		int Ay = character.GetPosY();
+		int Aw = character.GetPosW();
+		int Ah = character.GetPosH();
+
+		int Bx = goal.GetX();
+		int By = goal.GetY();
+		int Bw = goal.GetW();
+		int Bh = goal.GetH();
+		DrawBox(Bx - character.GetScreenX(), By - character.GetScreenY(), Bx + Bw - character.GetScreenX(), By + Bh - character.GetScreenY(), GetColor(255, 255, 255), false);
+		if (Collision::IsHitRect(Ax, Ay, Aw, Ah, Bx, By, Bw, Bh))
+		{
+			DrawFormatString(100, 170, GetColor(255, 0, 0), "ゴール");
+			sceneID = SCENE_ID_INIT_CLEAR;
+		}
+	}
+}
+void PlaySceen::Map_erase()
+{
+	int Ax = character.GetPosX();
+	int Ay = character.GetPosY();
+	if (Ax > 1568 && Ax<1762 &&Ay > 800)
+	{
+		DrawFormatString(100, 240, GetColor(255, 0, 0), "足場消えます");
+		//足場消える
+		MapChipData1[29][50] = 3;
+		MapChipData1[29][51] = 3;
+		MapChipData1[29][52] = 3;
+		MapChipData1[29][53] = 3;
+		MapChipData1[29][54] = 3;
+	}
+}
 void PlaySceen::Step()
 {
 	Character_Hit_Map();
 	Character_Hit_Trap();
+	Character_Hit_Goal();
+	Map_erase();
 }

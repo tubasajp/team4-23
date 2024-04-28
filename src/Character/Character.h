@@ -20,6 +20,7 @@ public:
 	void StepOnJunp();
 	void SwitchDebug();
 	void  Dead_or_Alive();					//‚±‚Ì–¼‘O‚È‚©‚È‚©‚ÉƒZƒ“ƒX‚ ‚é
+	void Dead_Line();
 	int  GetPosX() { return x; }
 	int  GetPosY() { return y; }
 	int  GetPosH() { return h; }

@@ -25,27 +25,39 @@ void Mozi::Step()
 	{
 		Framecount--;
 	}
+	if (Framecount == 0)
+	{
+		handle = moziPath[0];
+		IsUse = true;
+	}
 	if (Framecount == 30)
 	{
 		handle = moziPath[1];
-		IsUse = true;
+
 	}
 	if (Framecount == 50)
 	{
 		handle = moziPath[2];
+
 	}
 	if (Framecount == 70)
 	{
 		handle = moziPath[3];
+		IsUse = false;
+
 	}
-	if (Framecount == 90)
+	//ƒoƒO‚é‚©‚çŽg‚í‚È‚¢
+	/*if (Framecount == 90)
 	{
 		handle = moziPath[4];
-		IsUse = false;
-	}
+
+		
+	}*/
 
 }
 void Mozi::Draw()
 {
+	DrawFormatString(100, 200, GetColor(255, 0, 0), "x=%d y =%d", x,y);
+	DrawFormatString(100, 220, GetColor(255, 0, 0), "handle=%d", handle);
 	DrawGraph(x, y, handle, true);
 }
