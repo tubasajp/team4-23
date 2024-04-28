@@ -3,6 +3,7 @@
 #include"../Map/Map.h"
 #include"../PlaySceen/PlaySceen.h"
 #include"../Collision/Collision.h"
+#include"../Trap/Trap.h"
 
 const int SQUARE_Y = 5;		//現在の位置からY軸の当たり判定の範囲を設定する
 const int SQUARE_X = 10;	//現在の位置からX軸の当たり判定の範囲を設定する
@@ -132,5 +133,30 @@ void PlaySceen::Character_Hit_Map()
 			}
 		}
 	}
-	
+}
+void PlaySceen::Character_Hit_Trap()
+{
+	for (int i = 0; i < TRAP_MAX; i++)
+	{
+		int Ax = character.GetPosX();
+		int Ay = character.GetPosY();
+		int Aw = character.GetPosW();
+		int Ah = character.GetPosH();
+
+		int Bx = trap[i].x;
+		int By =trap[i].y;
+		int Bw = trap[i].w;
+		int Bh = trap[i].h;
+		DrawBox(Bx - character.GetScreenX(), By - character.GetScreenY(), Bx + Bw - character.GetScreenX(), By + Bh - character.GetScreenY(), GetColor(255, 255, 255), false);
+		if (Collision::IsHitRect(Ax, Ay, Aw, Ah, Bx, By, Bw, Bh))
+		{
+			DrawFormatString(100, 150, GetColor(255, 0, 0), " トゲとキャラクターヒット = %d ", character.GetHp());
+			character.SetHp(0);
+		}
+	}
+}
+void PlaySceen::Step()
+{
+	Character_Hit_Map();
+	Character_Hit_Trap();
 }

@@ -1,7 +1,6 @@
 #include"Title.h"
 #include"DxLib.h"
 #include"../../Input/Input.h"
-#include"../scene.h"
 Title title;
 void Title::InitTitle()
 {
