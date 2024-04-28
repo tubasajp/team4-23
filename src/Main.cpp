@@ -7,6 +7,7 @@
 #include"Character/Character.h"
 #include"Map/Map.h"
 #include"PlaySceen/PlaySceen.h"
+#include "Scene/sceneTitle.h"
 SCENE_ID sceneID;
 int StageIndex;
 
@@ -55,8 +56,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	//-----------------------------------------
 	//ˆê”ÔÅ‰‚É‚P‰ñ‚¾‚¯‚â‚éˆ—‚ğ‚±‚±‚É‘‚­
 
-
 	sceneID = SCENE_INIT_PLAY;
+	//sceneID = SCENE_INIT_PLAY;
 
 
 	//“ü—Í§Œä‰Šú‰»
@@ -111,19 +112,20 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			//-----------------------------------------
 			case SCENE_INIT_TITLE:
 			{
-				
+				scenetitle.InitTitle();
 			}
 				break;
 
 			case SCENE_LOOP_TITLE:
 			{
-				
+				scenetitle.StepTitle();
+				scenetitle.DrawTitle();
 			}
 				break;
 
 			case SCENE_FIN_TITLE:
 			{
-				
+				scenetitle.FinTitle();
 			}
 				break;
 
