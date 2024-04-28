@@ -3,7 +3,7 @@
 class Character
 {
 private:
-	int x, y, h, w, handle,GravitySpeed,Next_x,Next_y, ScreenX, ScreenY, ScreenPosX, ScreenPosY,HitSquareX, HitSquareY,Junpcount,OnJunp;
+	int x, y, h, w, handle,GravitySpeed,Next_x,Next_y, ScreenX, ScreenY, ScreenPosX, ScreenPosY,HitSquareX, HitSquareY,Junpcount,OnJunp,Hp;
 	bool Isuse,DebugMode;
 public:
 	void Init();		//èâä˙âª
@@ -19,6 +19,7 @@ public:
 	void DebugStep();
 	void StepOnJunp();
 	void SwitchDebug();
+	void  Dead_or_Alive();					//Ç±ÇÃñºëOÇ»Ç©Ç»Ç©Ç…ÉZÉìÉXÇ†ÇÈ
 	int  GetPosX() { return x; }
 	int  GetPosY() { return y; }
 	int  GetPosH() { return h; }
@@ -36,5 +37,7 @@ public:
 	int SetJunpcount(int a) { Junpcount = a; return Junpcount; }
 	int GetJunpcount() { return Junpcount; }
 	int SetGravitySpeed(int a) { GravitySpeed = a; return GravitySpeed; }
+	int GetHp() { return Hp; }
+	int SetHp(int a) { Hp = a;  return Hp; }
 };
 extern Character character;

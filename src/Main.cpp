@@ -6,6 +6,8 @@
 #include"Character/Character.h"
 #include"Map/Map.h"
 #include"PlaySceen/PlaySceen.h"
+#include"Trap/Trap.h"
+#include"Scene/Gameover/Gameover.h"
 #define FRAME_RATE (60)
 #define FRAME_TIME (1000/FRAME_RATE)
 struct FrameRateInfo
@@ -44,7 +46,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	
 	//-----------------------------------------
 	//一番最初に１回だけやる処理をここに書く
-	SCENE_ID sceneID= SCENE_ID_INIT_TITLE;
 	//-----------------------------------------
 
 	//ゲームメインループ
@@ -93,36 +94,59 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 				//-----------------------------------------
 			case SCENE_ID_INIT_TITLE:
 			{
-				character.Init();
-				character.InitScreen();
-				map.InitMap();
-				sceneID = SCENE_ID_LOOP_TITLE;
+				
 			}
 			break;
 
 			case SCENE_ID_LOOP_TITLE:
 			{
-				character.Step();
-				playSceen.Character_Hit_Map();
-				character.UpdatePos();
-				map.DrawMap();
-				character.Draw();
+				
 				
 			}
 			break;
 
 			case SCENE_ID_INIT_PLAY:
 			{
-
+				character.Init();
+				character.InitScreen();
+				map.InitMap();
+				trapInit();
+				sceneID = SCENE_ID_LOOP_PLAY;
 			}
 			break;
 
 			case SCENE_ID_LOOP_PLAY:
 			{
+				character.Step();
+				playSceen.Step();
+				character.UpdatePos();
+				map.DrawMap();
+				trapDraw();
+				character.Draw();
+				character.Dead_or_Alive();
+			}
+			break;
+			case SCENE_ID_INIT_CLEAR:
+			{
 
 			}
 			break;
+			case SCENE_ID_LOOP_CLEAR:
+			{
 
+			}
+			break;
+			case SCENE_ID_INIT_GAMEOVER:
+			{
+				gameover.Init();
+				sceneID = SCENE_ID_LOOP_GAMEOVER;
+			}
+			break;
+			case SCENE_ID_LOOP_GAMEOVER:
+			{
+				gameover.Draw();
+			}
+			break;
 			default:
 				break;
 

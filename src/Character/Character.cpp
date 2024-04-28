@@ -2,6 +2,7 @@
 #include"Character.h"
 #include"../Input/Input.h"
 #include"../Common.h"
+#include"../Scene/Scene.h"
 const int MOVE_SPEED = 5;	//移動スピード
 const int JUNP_POWER = 20;	//ジャンプ力
 const int GRAVITY_SPEED = 1;		//常にかかる重力
@@ -19,6 +20,7 @@ void Character::Init()
 	Next_y = y;					//次の座標
 	HitSquareX = 0;				//マップとキャラの当たり判定を任意に調整するX
 	HitSquareY = 0;				//マップとキャラの当たり判定を任意に調整するY
+	Hp = 1;
 	handle = LoadGraph("Data/");
 	Isuse = false;
 	DebugMode = true;
@@ -160,22 +162,27 @@ void Character::StepOnJunp()
 }
 void Character::DebugStep()
 {
+	int a = 0;
+	if (IsKeyKeep(KEY_INPUT_LSHIFT))
+	{
+		 a= 4;
+	}
 	if (IsKeyKeep(KEY_INPUT_W))
 	{
-		Next_y -= MOVE_SPEED;
+		Next_y -= MOVE_SPEED-a;
 	}
 	if (IsKeyKeep(KEY_INPUT_S))
 	{
-		Next_y += MOVE_SPEED;
+		Next_y += MOVE_SPEED - a;
 	}
 	if (IsKeyKeep(KEY_INPUT_A))
 	{
-		Next_x -= MOVE_SPEED;
+		Next_x -= MOVE_SPEED - a;
 	}
 
 	if (IsKeyKeep(KEY_INPUT_D))
 	{
-		Next_x += MOVE_SPEED;
+		Next_x += MOVE_SPEED - a;
 	}
 }
 void Character::SwitchDebug()
@@ -188,5 +195,12 @@ void Character::SwitchDebug()
 	if (IsKeyPush(KEY_INPUT_2))
 	{
 		DebugMode = false;
+	}
+}
+void  Character::Dead_or_Alive()
+{
+	if (Hp == 0)
+	{
+		sceneID = SCENE_ID_INIT_GAMEOVER;
 	}
 }
