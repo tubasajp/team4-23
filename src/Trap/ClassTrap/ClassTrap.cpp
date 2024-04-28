@@ -12,11 +12,19 @@ void CTrap::Init() {
 	m_size = 1.0f;
 	m_angle = 0.0f;
 	m_hndl = LoadGraph("../../Data/Map/トゲ.png");
+	m_is_Damage = true;
 }
 
 void CTrap::Step() {
 
-	Draw();
+	// プレイヤーにダメージを与える場合,与えない場合の処理
+	if (m_is_Damage == true) {
+
+	}
+	else if (m_is_Damage == false) {
+
+	}
+
 }
 
 void CTrap::Draw() {
