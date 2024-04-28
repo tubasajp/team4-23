@@ -11,6 +11,7 @@
 #include"mozi/mozi.h"
 #include"../src/Scene/Title/Title.h"
 #include"../src/MapChipGoal/MapChipGoal.h"
+#include"kumo/Enemykumo.h"
 #include"Scene/Clear/Clear.h"
 #define FRAME_RATE (60)
 #define FRAME_TIME (1000/FRAME_RATE)
@@ -120,6 +121,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 				map.InitMap();
 				trapInit();
 				goal.Init();
+				kumoInit();
 				sceneID = SCENE_ID_LOOP_PLAY;
 			}
 			break;
@@ -132,6 +134,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 				character.UpdatePos();
 				goal.Draw();
 				map.DrawMap();
+				kumoDraw();
 				trapDraw();
 				character.Draw();
 				character.Dead_or_Alive();

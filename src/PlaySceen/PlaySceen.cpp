@@ -6,6 +6,7 @@
 #include"../Trap/Trap.h"
 #include"../MapChipGoal/MapChipGoal.h"
 #include"../Scene/Scene.h"
+#include"../kumo/Enemykumo.h"
 
 const int SQUARE_Y = 5;		//現在の位置からY軸の当たり判定の範囲を設定する
 const int SQUARE_X = 10;	//現在の位置からX軸の当たり判定の範囲を設定する
@@ -193,10 +194,32 @@ void PlaySceen::Map_erase()
 		MapChipData1[29][54] = 3;
 	}
 }
+void PlaySceen::Character_Hit_Enemykumo()
+{
+	for (int i = 0; i < TRAP_MAX; i++)
+	{
+		int Ax = character.GetPosX();
+		int Ay = character.GetPosY();
+		int Aw = character.GetPosW();
+		int Ah = character.GetPosH();
+
+		int Bx = goal.GetX();
+		int By = goal.GetY();
+		int Bw = goal.GetW();
+		int Bh = goal.GetH();
+		DrawBox(Bx - character.GetScreenX(), By - character.GetScreenY(), Bx + Bw - character.GetScreenX(), By + Bh - character.GetScreenY(), GetColor(255, 255, 255), false);
+		if (Collision::IsHitRect(Ax, Ay, Aw, Ah, Bx, By, Bw, Bh))
+		{
+			DrawFormatString(100, 270, GetColor(255, 0, 0), "雲ヒット");
+			sceneID = SCENE_ID_INIT_CLEAR;
+		}
+	}
+}
 void PlaySceen::Step()
 {
 	Character_Hit_Map();
 	Character_Hit_Trap();
 	Character_Hit_Goal();
+	Character_Hit_Enemykumo();
 	Map_erase();
 }
