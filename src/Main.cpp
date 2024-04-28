@@ -7,7 +7,6 @@
 #include"Character/Character.h"
 #include"Map/Map.h"
 #include"PlaySceen/PlaySceen.h"
-#include"Trap/Trap.h"
 
 
 #define FRAME_RATE (60)
@@ -52,7 +51,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	//-----------------------------------------
 	//一番最初に１回だけやる処理をここに書く
 	SCENE_ID sceneID= SCENE_ID_INIT_TITLE;
-	CTrap trap;
 	//-----------------------------------------
 
 	//ゲームメインループ
@@ -105,7 +103,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 				character.InitScreen();
 				map.ReadFilemap();
 				map.InitMap();
-				trap.Init();
 				sceneID = SCENE_ID_LOOP_TITLE;
 			}
 			break;
@@ -113,11 +110,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			case SCENE_ID_LOOP_TITLE:
 			{
 				character.Step();
-				trap.Step();
 				playSceen.Character_Hit_Map();
 				character.UpdatePos();
 				character.Draw();
-				trap.Draw();
 				map.DrawMap();
 			}
 			break;
