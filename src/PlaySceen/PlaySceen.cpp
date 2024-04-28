@@ -3,6 +3,7 @@
 #include"../Map/Map.h"
 #include"../PlaySceen/PlaySceen.h"
 #include"../Collision/Collision.h"
+
 const int SQUARE_Y = 5;		//Œ»İ‚ÌˆÊ’u‚©‚çY²‚Ì“–‚½‚è”»’è‚Ì”ÍˆÍ‚ğİ’è‚·‚é
 const int SQUARE_X = 10;	//Œ»İ‚ÌˆÊ’u‚©‚çX²‚Ì“–‚½‚è”»’è‚Ì”ÍˆÍ‚ğİ’è‚·‚é
 PlaySceen playSceen;

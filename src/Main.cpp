@@ -6,13 +6,8 @@
 #include"Character/Character.h"
 #include"Map/Map.h"
 #include"PlaySceen/PlaySceen.h"
-
-
 #define FRAME_RATE (60)
-
-
 #define FRAME_TIME (1000/FRAME_RATE)
-
 struct FrameRateInfo
 {
 	int currentTime;    
