@@ -10,7 +10,7 @@ const int GRAVITY_MAX = 8;	//d—Í‚ÌãŒÀ
 Character character;
 void Character::Init()
 {
-	x = 550;		
+	x = 600;		
 	y = 800;					//‰Šú’l
 	h = 32;			
 	w = 32;
