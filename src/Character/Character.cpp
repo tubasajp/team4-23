@@ -41,6 +41,11 @@ void Character::Init()
 void Character::Move()
 {
 	DrawFormatString(100, 70, GetColor(255, 0, 0), "GravitySpeed %d ",GravitySpeed);
+	int a = 0;
+	if (IsKeyKeep(KEY_INPUT_LSHIFT))
+	{
+		a = 4;
+	}
 	if (IsKeyPush(KEY_INPUT_W))
 	{
 		if (Junpcount < 3)
@@ -57,10 +62,11 @@ void Character::Move()
 	//x‚ª155‚Ü‚Ås‚Á‚½‚ç‘€ì•s”\
 	if (x > 155)
 	{
+		
 		if (IsKeyKeep(KEY_INPUT_A))
 		{
 			walkLeftFramecount++;
-			Next_x -= MOVE_SPEED;
+			Next_x -= MOVE_SPEED-a;
 		}
 		if (IsKeyRelease(KEY_INPUT_A))
 		{
@@ -72,7 +78,7 @@ void Character::Move()
 	if (IsKeyKeep(KEY_INPUT_D))
 	{
 		walkrightFramecount++;
-		Next_x += MOVE_SPEED;
+		Next_x += MOVE_SPEED-a;
 	}
 	if (IsKeyRelease(KEY_INPUT_D))
 	{
