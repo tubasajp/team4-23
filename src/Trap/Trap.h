@@ -1,9 +1,10 @@
 #pragma once
-const int TRAP_MAX = 15;
+const int TRAP_MAX = 19;
 struct Trap
 {
-	int x, y, h, w, handle, trapPosX, trapPosY;
-	bool IsUse,sitaIsMove, ueIsMove, hidariIsMove, migiIsMove;
+	int x, y, h, w, handle, trapPosX, trapPosY,Framecount;
+	float Rota;
+	bool IsUse,sitaIsMove, ueIsMove, hidariIsMove, migiIsMove, Once_again;
 };
 void trapInit();						// èâä˙âª
 void trapStep();						// í èÌ
