@@ -8,7 +8,7 @@ void Gameover::Init()
 {
 	x = 0;
 	y = 0;
-	handle = LoadGraph("Data/GameoverImage/GameoverImage.png");
+	handle = LoadGraph("Data/GameoverImage/GameoverImage2.png");
 
 	soundhandle = LoadSoundMem("Data/BGM/GameoverSound.mp3");
 	PlaySoundMem(soundhandle, DX_PLAYTYPE_LOOP, true);
