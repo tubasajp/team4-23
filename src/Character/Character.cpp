@@ -12,8 +12,8 @@ const int Deth_Line = 950;
 Character character;
 void Character::Init()
 {
-	x = /*1900*/384;		
-	y = /*608*/800;					//初期値
+	x = 1900;//384		
+	y = 608;//800;					//初期値
 	h = 32;			
 	w = 32;
 	GravitySpeed = 0;			//重力のスピード

@@ -1,5 +1,5 @@
 #pragma once
-const int TRAP_MAX = 19;
+const int TRAP_MAX = 35;
 struct Trap
 {
 	int x, y, h, w, handle, trapPosX, trapPosY,Framecount;
