@@ -7,7 +7,7 @@
 #include"../MapChipGoal/MapChipGoal.h"
 #include"../Scene/Scene.h"
 #include"../kumo/Enemykumo.h"
-
+const int dotto = 2;
 const int SQUARE_Y = 5;		//Œ»İ‚ÌˆÊ’u‚©‚çY²‚Ì“–‚½‚è”»’è‚Ì”ÍˆÍ‚ğİ’è‚·‚é
 const int SQUARE_X = 10;	//Œ»İ‚ÌˆÊ’u‚©‚çX²‚Ì“–‚½‚è”»’è‚Ì”ÍˆÍ‚ğİ’è‚·‚é
 PlaySceen playSceen;
