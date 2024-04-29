@@ -4,7 +4,7 @@
 Goal goal;
 void Goal::Init()
 {
-	x = 600;
+	x = 3136;
 	y = 896;
 	h = 32;
 	w = 32;

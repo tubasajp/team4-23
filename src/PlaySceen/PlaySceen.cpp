@@ -185,7 +185,6 @@ void PlaySceen::Map_erase()
 	int Ay = character.GetPosY();
 	if (Ax > 1568 && Ax<1762 &&Ay > 800)
 	{
-		DrawFormatString(100, 240, GetColor(255, 0, 0), "‘«êÁ‚¦‚Ü‚·");
 		//‘«êÁ‚¦‚é
 		MapChipData1[29][49] = 3;
 		MapChipData1[29][50] = 3;
@@ -193,6 +192,22 @@ void PlaySceen::Map_erase()
 		MapChipData1[29][52] = 3;
 		MapChipData1[29][53] = 3;
 		MapChipData1[29][54] = 3;
+	}
+	if (Ax > 2752 && Ax < 2912 && Ay > 630 && Ay < 736)
+	{
+		DrawFormatString(100, 300, GetColor(255, 0, 0), "‘«êÁ‚¦‚Ü‚·");
+		MapChipData1[22][87] = 3;
+		MapChipData1[22][88] = 3;
+		MapChipData1[22][89] = 3;
+		MapChipData1[22][90] = 3;
+		MapChipData1[22][91] = 3;
+		//–„‚ß‚é
+		MapChipData1[26][85] = 1;
+		MapChipData1[26][86] = 1;
+		MapChipData1[27][85] = 1;
+		MapChipData1[27][86] = 1;
+		MapChipData1[28][85] = 1;
+		MapChipData1[28][86] = 1;
 	}
 }
 void PlaySceen::Character_Hit_Enemykumo()

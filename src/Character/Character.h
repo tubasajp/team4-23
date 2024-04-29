@@ -3,9 +3,9 @@
 class Character
 {
 private:
-	int x, y, h, w, handle,GravitySpeed,Next_x,Next_y, ScreenX, ScreenY, ScreenPosX, ScreenPosY,HitSquareX, HitSquareY,Junpcount,OnJunp,Hp, walkLeftFramecount;
+	int x, y, h, w, handle,GravitySpeed,Next_x,Next_y, ScreenX, ScreenY, ScreenPosX, ScreenPosY,HitSquareX, HitSquareY,Junpcount,OnJunp,Hp, walkLeftFramecount, walkrightFramecount;
 	bool Isuse,DebugMode;
-
+	bool gazousyokik = false;
 	int backhandle;
 public:
 	void Init();		//èâä˙âª
@@ -24,6 +24,7 @@ public:
 	void  Dead_or_Alive();					//Ç±ÇÃñºëOÇ»Ç©Ç»Ç©Ç…ÉZÉìÉXÇ†ÇÈ
 	void Dead_Line();
 	void Stepwalk();
+	void DrawPlayHaikei();
 	int  GetPosX() { return x; }
 	int  GetPosY() { return y; }
 	int  GetPosH() { return h; }
