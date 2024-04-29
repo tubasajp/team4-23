@@ -12,8 +12,8 @@ const int Deth_Line = 950;
 Character character;
 void Character::Init()
 {
-	x = 2700;//384		
-	y = 300;//800;					//初期値
+	x = 1900;//384		
+	y = 608;//800;					//初期値
 	h = 32;			
 	w = 32;
 	GravitySpeed = 0;			//重力のスピード
@@ -26,11 +26,6 @@ void Character::Init()
 	Isuse = false;
 	DebugMode = true;
 	Junpcount = 0;			//ジャンプ使用フラグ
-
-	
-	backhandle = LoadGraph("Data/TitleImage/BackGround3.png");
-	
-	
 }
 void Character::Move()
 {
@@ -78,8 +73,6 @@ void Character::Gravity()
 }
 void Character::Draw()
 {
-	DrawGraph(0, 0, backhandle, true);
-
 	DrawFormatString(100, 50, GetColor(255, 0, 0), "x = %d  y = %d", x,y);
 	DrawRotaGraph(x- ScreenX, y- ScreenY, 1.0, 0.0, handle, true);
 }

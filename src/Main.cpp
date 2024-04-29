@@ -138,7 +138,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 				kumoDraw();
 				trapDraw();
 				
-				character.Dead_or_Alive();
+				/*character.Dead_or_Alive();*/
 			}
 			break;
 			case SCENE_ID_INIT_CLEAR:

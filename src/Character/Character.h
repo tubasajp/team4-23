@@ -3,7 +3,7 @@
 class Character
 {
 private:
-	int x, y, h, w, handle,GravitySpeed,Next_x,Next_y, ScreenX, ScreenY, ScreenPosX, ScreenPosY,HitSquareX, HitSquareY,Junpcount,OnJunp,Hp;
+	int x, y, h, w, handle,GravitySpeed,Next_x,Next_y, ScreenX, ScreenY, ScreenPosX, ScreenPosY,HitSquareX, HitSquareY,Junpcount,OnJunp,Hp, walkLeftFramecount;
 	bool Isuse,DebugMode;
 
 	int backhandle;
@@ -23,6 +23,7 @@ public:
 	void SwitchDebug();
 	void  Dead_or_Alive();					//‚±‚Ì–¼‘O‚È‚©‚È‚©‚ÉƒZƒ“ƒX‚ ‚é
 	void Dead_Line();
+	void Stepwalk();
 	int  GetPosX() { return x; }
 	int  GetPosY() { return y; }
 	int  GetPosH() { return h; }
