@@ -8,7 +8,7 @@ void Title::InitTitle()
 	x = 0;
 	y = 0;
 	handle = LoadGraph("Data/TitleImage/TitleImage3.png");
-	TitleNameHandle = LoadGraph("Data/TitleImage/仮置きタイトル.png");
+	TitleNameHandle = LoadGraph("Data/TitleImage/NameImage.png");
 
 	for (int i = 0; i < CLOUD_MAX_NUM; i++)
 	{
@@ -33,7 +33,7 @@ void Title::InitTitle()
 void Title::DrawTitle()
 {
 	DrawGraph(x, y, handle,true);
-	DrawGraph(350, 0, TitleNameHandle, true);
+	DrawGraph(320, 0, TitleNameHandle, true);
 
 	for (int i = 0; i < CLOUD_MAX_NUM; i++)
 	{

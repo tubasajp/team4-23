@@ -26,6 +26,11 @@ void Character::Init()
 	Isuse = false;
 	DebugMode = true;
 	Junpcount = 0;			//ジャンプ使用フラグ
+
+	
+	backhandle = LoadGraph("Data/TitleImage/BackGround3.png");
+	
+	
 }
 void Character::Move()
 {
@@ -73,6 +78,8 @@ void Character::Gravity()
 }
 void Character::Draw()
 {
+	DrawGraph(0, 0, backhandle, true);
+
 	DrawFormatString(100, 50, GetColor(255, 0, 0), "x = %d  y = %d", x,y);
 	DrawRotaGraph(x- ScreenX, y- ScreenY, 1.0, 0.0, handle, true);
 }

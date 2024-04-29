@@ -5,6 +5,8 @@ class Character
 private:
 	int x, y, h, w, handle,GravitySpeed,Next_x,Next_y, ScreenX, ScreenY, ScreenPosX, ScreenPosY,HitSquareX, HitSquareY,Junpcount,OnJunp,Hp;
 	bool Isuse,DebugMode;
+
+	int backhandle;
 public:
 	void Init();		//‰Šú‰»
 	void Move();		//ˆÚ“®

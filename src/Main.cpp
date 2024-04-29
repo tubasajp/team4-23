@@ -128,6 +128,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 			case SCENE_ID_LOOP_PLAY:
 			{
+				character.Draw();
 				character.Step();
 				playSceen.Step();
 				TrapMove();
@@ -136,7 +137,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 				map.DrawMap();
 				kumoDraw();
 				trapDraw();
-				character.Draw();
+				
 				character.Dead_or_Alive();
 			}
 			break;
