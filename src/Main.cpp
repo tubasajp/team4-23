@@ -167,7 +167,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 				mozi.Step();
 				
 				gameover.Draw();
-				mozi.Draw();
+				//mozi.Draw();
 			}
 			break;
 			default:
