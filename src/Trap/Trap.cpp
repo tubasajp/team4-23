@@ -2,6 +2,8 @@
 #include <DXLib.h>
 #include"../Character/Character.h"
 Trap  trap[TRAP_MAX];
+const float sitamuki = 3.14f;
+const float hidarimuki = 1.6f;
 bool a = false;
 void trapInit()
 { 
@@ -29,8 +31,12 @@ void trapInit()
 			trap[i].Size = 0.038f;
 		}
 	}
-	trap[15].Rota = -1.6f, trap[16].Rota = -1.6f, trap[17].Rota = -1.6f, trap[24].Rota = -1.6f, trap[25].Rota = -1.6f, trap[26].Rota = -1.6f;
-	//trap[27].Size = 0.1f, trap[28].Size = 0.1f, trap[29].Size = 0.1f, trap[30].Size = 0.1f, trap[31].Size = 0.1f, trap[32].Size = 0.1f, trap[33].Size = 0.1f, trap[34].Size = 0.1f, trap[35].Size = 0.1f, trap[36].Size = 0.1f, trap[37].Size = 0.1f, trap[38].Size = 0.1f, trap[39].Size = 0.1f, trap[40].Size = 0.1f;
+	//âE
+	trap[3].Rota = -hidarimuki, trap[15].Rota = -hidarimuki, trap[16].Rota = -hidarimuki, trap[17].Rota = -hidarimuki, trap[24].Rota = -hidarimuki, trap[25].Rota = -hidarimuki, trap[26].Rota = -hidarimuki;
+	//â∫
+	trap[0].Rota = -sitamuki, trap[1].Rota = -sitamuki, trap[2].Rota = -sitamuki;
+	//ç∂
+	trap[4].Rota = hidarimuki, trap[5].Rota = hidarimuki, trap[6].Rota = hidarimuki;
 }
 
 void trapStep()
