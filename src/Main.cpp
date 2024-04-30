@@ -117,7 +117,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			case SCENE_ID_INIT_PLAY:
 			{
 				
-				
+				SetDrawBright(255, 255, 255);
 				map.InitMap();
 				trapInit();
 				goal.Init();

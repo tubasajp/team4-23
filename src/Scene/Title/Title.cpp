@@ -80,7 +80,7 @@ void Title::DrawTitle()
 
 	if (NextSceneCnt == 0)
 	{
-		SetDrawBright(255, 255, 255);
+		//SetDrawBright(255, 255, 255);
 	}
 	else
 	{

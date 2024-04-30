@@ -32,3 +32,5 @@ public:
 	void Fin();
 
 };
+
+//extern SE se;

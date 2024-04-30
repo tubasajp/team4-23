@@ -3,6 +3,8 @@
 #include"../Input/Input.h"
 #include"../Common.h"
 #include"../Scene/Scene.h"
+#include "../SE/SE.h"
+
 const int MOVE_SPEED = 5;	//移動スピード
 const int JUNP_POWER = 20;	//ジャンプ力
 const int GRAVITY_SPEED = 1;		//常にかかる重力
@@ -12,6 +14,8 @@ const int Deth_Line = 950;
 int CharaLeftPath[3];
 int ChararightPath[3];
 Character character;
+
+SE se;
 void Character::Init()
 {
 	x = 384;//
@@ -37,6 +41,8 @@ void Character::Init()
 	ChararightPath[0]= LoadGraph("Data/playerImage/playerdash1.png");
 	ChararightPath[1] = LoadGraph("Data/playerImage/playerdash2.png");
 	ChararightPath[2] = LoadGraph("Data/playerImage/playerdash3.png");
+
+	se.Init(SE9);
 }
 void Character::Move()
 {
@@ -48,6 +54,7 @@ void Character::Move()
 	}
 	if (IsKeyPush(KEY_INPUT_W)|| IsKeyPush(KEY_INPUT_SPACE))
 	{
+		//se.Step();
 		if (Junpcount < 3)
 		{
 			Junpcount++;
