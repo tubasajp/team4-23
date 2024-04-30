@@ -14,8 +14,8 @@ int ChararightPath[3];
 Character character;
 void Character::Init()
 {
-	x = 384;//2400
-	y = 660;	//270				//初期値
+	x = 2400;//384
+	y = 270;	//	660			//初期値
 	h = 32;			
 	w = 32;
 	GravitySpeed = 0;			//重力のスピード
@@ -46,7 +46,7 @@ void Character::Move()
 	{
 		a = 4;
 	}
-	if (IsKeyPush(KEY_INPUT_W))
+	if (IsKeyPush(KEY_INPUT_W)|| IsKeyPush(KEY_INPUT_SPACE))
 	{
 		if (Junpcount < 3)
 		{
@@ -215,7 +215,7 @@ void Character::StepHitSquare()					//当たり判定を調節する位置
 }
 void Character::StepOnJunp()
 {
-	if (IsKeyPush(KEY_INPUT_W))
+	if (IsKeyPush(KEY_INPUT_W) || IsKeyPush(KEY_INPUT_SPACE))
 	{
 		if (Junpcount < 3)
 		{

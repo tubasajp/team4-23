@@ -29,6 +29,8 @@ void trapInit()
 		if (i > 26 && i < 41)
 		{
 			trap[i].Size = 0.038f;
+			trap[i].w = 3;
+			trap[i].h = 3;
 		}
 	}
 	//‰E
@@ -71,7 +73,7 @@ void TrapMove()
 	{
 		trap[15].migiIsMove = true, trap[16].migiIsMove = true, trap[17].migiIsMove = true, trap[24].migiIsMove = true, trap[25].migiIsMove = true, trap[26].migiIsMove = true;
 	}
-	if (Ax > 2752 && Ax < 2912 && Ay > 880)
+	if (Ax > 2752 && Ax < 2940 && Ay > 880)
 	{
 		trap[27].ueIsMove = true;
 		trap[28].ueIsMove = true;

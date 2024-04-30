@@ -94,7 +94,7 @@ void PlaySceen::Character_Hit_Map()
 			int Aw = character.GetPosW();
 			int Ah = character.GetPosH();
 
-			// オブジェクトの情報
+			
 			int Bx = x * 32;
 			int By = y * 32;
 			int Bw = MAPCHIP_SIZW;
@@ -146,10 +146,17 @@ void PlaySceen::Character_Hit_Trap()
 		int Aw = character.GetPosW();
 		int Ah = character.GetPosH();
 
+		
+		// オブジェクトの情報
 		int Bx = trap[i].x;
-		int By =trap[i].y;
+		int By = trap[i].y;
 		int Bw = trap[i].w;
 		int Bh = trap[i].h;
+		if (i > 26 && i < 41)
+		{
+			Bx = trap[i].x+16;
+			By = trap[i].y+16;
+		}
 		DrawBox(Bx - character.GetScreenX(), By - character.GetScreenY(), Bx + Bw - character.GetScreenX(), By + Bh - character.GetScreenY(), GetColor(255, 255, 255), false);
 		if (Collision::IsHitRect(Ax, Ay, Aw, Ah, Bx, By, Bw, Bh))
 		{
