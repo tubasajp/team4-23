@@ -57,7 +57,7 @@ void Mozi::Step()
 }
 void Mozi::Draw()
 {
-	DrawFormatString(100, 200, GetColor(255, 0, 0), "x=%d y =%d", x,y);
-	DrawFormatString(100, 220, GetColor(255, 0, 0), "handle=%d", handle);
+	//DrawFormatString(100, 200, GetColor(255, 0, 0), "x=%d y =%d", x,y);
+	//DrawFormatString(100, 220, GetColor(255, 0, 0), "handle=%d", handle);
 	DrawGraph(x+115, y+40, handle, true);
 }

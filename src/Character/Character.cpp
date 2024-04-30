@@ -14,8 +14,8 @@ int ChararightPath[3];
 Character character;
 void Character::Init()
 {
-	x = 2400;//384
-	y = 270;	//	660			//初期値
+	x = 384;//
+	y =880;	//				//初期値
 	h = 32;			
 	w = 32;
 	GravitySpeed = 0;			//重力のスピード
@@ -40,7 +40,7 @@ void Character::Init()
 }
 void Character::Move()
 {
-	DrawFormatString(100, 70, GetColor(255, 0, 0), "GravitySpeed %d ",GravitySpeed);
+	//DrawFormatString(100, 70, GetColor(255, 0, 0), "GravitySpeed %d ",GravitySpeed);
 	int a = 0;
 	if (IsKeyKeep(KEY_INPUT_LSHIFT))
 	{
@@ -143,9 +143,9 @@ void Character::Draw()
 {
 	
 	DrawRotaGraph(x - ScreenX + 16, y - ScreenY + 16, 1.0, 0.0, handle, true);
-	DrawFormatString(100, 50, GetColor(255, 0, 0), "x = %d  y = %d", x,y);
-	DrawFormatString(100, 500, GetColor(255, 0, 0), "walkLeftFramecount %d ", walkLeftFramecount);
-	DrawFormatString(100, 520, GetColor(255, 0, 0), "walkrightFramecount %d ", walkrightFramecount);
+	//DrawFormatString(100, 50, GetColor(255, 0, 0), "x = %d  y = %d", x,y);
+	//DrawFormatString(100, 500, GetColor(255, 0, 0), "walkLeftFramecount %d ", walkLeftFramecount);
+	//DrawFormatString(100, 520, GetColor(255, 0, 0), "walkrightFramecount %d ", walkrightFramecount);
 	
 	
 }
@@ -193,8 +193,8 @@ void Character::StepScreen()						//スクリーンのワールド座標
 	ScreenPosX = x - SCREEN_SIZE_X / 2;						//X座標のスクリーンX座標比較
 	ScreenPosY = y - SCREEN_SIZE_Y / 2;						//Y座標のスクリーンY座標比較
 
-	DrawFormatString(100, 140, GetColor(255, 0, 0), "ScreenX=%d", ScreenX);
-	DrawFormatString(100, 160, GetColor(255, 0, 0), "Screen=%d", ScreenY);
+	//DrawFormatString(100, 140, GetColor(255, 0, 0), "ScreenX=%d", ScreenX);
+	//DrawFormatString(100, 160, GetColor(255, 0, 0), "Screen=%d", ScreenY);
 	////スクリーンXをついてくる動かす処理
 	if(ScreenX>0)
 	{

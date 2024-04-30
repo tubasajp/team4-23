@@ -62,7 +62,7 @@ void TrapMove()
 	int Ay = character.GetPosY();
 	if (Ax > 1280 && Ax < 1400 && Ay < 640)
 	{
-		DrawFormatString(100, 220, GetColor(255, 0, 0), "来るぞー");
+		//DrawFormatString(100, 220, GetColor(255, 0, 0), "来るぞー");
 		trap[8].sitaIsMove = true, trap[9].sitaIsMove = true, trap[10].sitaIsMove = true, trap[11].sitaIsMove = true, trap[41].sitaIsMove = true, trap[42].sitaIsMove = true;
 	}
 	if (Ax > 2070 && Ax < 2200 && Ay > 550 && Ay < 660)
@@ -82,7 +82,7 @@ void TrapMove()
 		trap[33].ueIsMove = true;
 		trap[34].ueIsMove = true;
 		trap[35].ueIsMove = true;
-		DrawFormatString(100, 240, GetColor(255, 0, 0), "上とげいきます！！");
+		//DrawFormatString(100, 240, GetColor(255, 0, 0), "上とげいきます！！");
 	}
 	for (int i = 0; i < TRAP_MAX; i++)
 	{

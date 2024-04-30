@@ -13,8 +13,8 @@ const int SQUARE_X = 10;	//現在の位置からX軸の当たり判定の範囲を設定する
 PlaySceen playSceen;
 void PlaySceen::Character_Hit_Map()
 {
-	DrawFormatString(100, 180, GetColor(255, 0, 0), "HitSquareX=%d", character.GetHitSquareX());
-	DrawFormatString(100, 200, GetColor(255, 0, 0), "HitSquareY=%d", character.GetHitSquareY());
+	//DrawFormatString(100, 180, GetColor(255, 0, 0), "HitSquareX=%d", character.GetHitSquareX());
+	//DrawFormatString(100, 200, GetColor(255, 0, 0), "HitSquareY=%d", character.GetHitSquareY());
 	character.StepHitSquare();
 	for (int y = character.GetHitSquareY() - SQUARE_Y; character.GetHitSquareY() + SQUARE_Y > y;y++)
 	{
@@ -103,9 +103,9 @@ void PlaySceen::Character_Hit_Map()
 				continue;
 
 			{
-				DrawBox(Bx-character.GetScreenX(), By- character.GetScreenY(), Bx + Bw- character.GetScreenX(), By + Bh- character.GetScreenY(), GetColor(255, 255, 255), false);
-				DrawBox(Ax - character.GetScreenX(), Ay - character.GetScreenY(), Ax + Aw - character.GetScreenX(), Ay + Ah - character.GetScreenY(), GetColor(255, 0, 0), false);
-				DrawFormatString(100, 90, GetColor(255, 0, 0), " GetJunpcount= %d ", character.GetJunpcount());
+				//DrawBox(Bx-character.GetScreenX(), By- character.GetScreenY(), Bx + Bw- character.GetScreenX(), By + Bh- character.GetScreenY(), GetColor(255, 255, 255), false);
+				//DrawBox(Ax - character.GetScreenX(), Ay - character.GetScreenY(), Ax + Aw - character.GetScreenX(), Ay + Ah - character.GetScreenY(), GetColor(255, 0, 0), false);
+				//DrawFormatString(100, 90, GetColor(255, 0, 0), " GetJunpcount= %d ", character.GetJunpcount());
 				// ※Y方向のみに移動したと仮定した座標で当たり判定をチェックします
 				Ay = character.GetNextPosY();
 				Ax = character.GetNextPosX();
@@ -157,10 +157,10 @@ void PlaySceen::Character_Hit_Trap()
 			Bx = trap[i].x+16;
 			By = trap[i].y+16;
 		}
-		DrawBox(Bx - character.GetScreenX(), By - character.GetScreenY(), Bx + Bw - character.GetScreenX(), By + Bh - character.GetScreenY(), GetColor(255, 255, 255), false);
+		//DrawBox(Bx - character.GetScreenX(), By - character.GetScreenY(), Bx + Bw - character.GetScreenX(), By + Bh - character.GetScreenY(), GetColor(255, 255, 255), false);
 		if (Collision::IsHitRect(Ax, Ay, Aw, Ah, Bx, By, Bw, Bh))
 		{
-			DrawFormatString(100, 150, GetColor(255, 0, 0), " トゲとキャラクターヒット = %d ", character.GetHp());
+			//DrawFormatString(100, 150, GetColor(255, 0, 0), " トゲとキャラクターヒット = %d ", character.GetHp());
 			character.SetHp(0);
 		}
 	}
@@ -178,10 +178,10 @@ void PlaySceen::Character_Hit_Goal()
 		int By = goal.GetY();
 		int Bw = goal.GetW();
 		int Bh = goal.GetH();
-		DrawBox(Bx - character.GetScreenX(), By - character.GetScreenY(), Bx + Bw - character.GetScreenX(), By + Bh - character.GetScreenY(), GetColor(255, 255, 255), false);
+		//DrawBox(Bx - character.GetScreenX(), By - character.GetScreenY(), Bx + Bw - character.GetScreenX(), By + Bh - character.GetScreenY(), GetColor(255, 255, 255), false);
 		if (Collision::IsHitRect(Ax, Ay, Aw, Ah, Bx, By, Bw, Bh))
 		{
-			DrawFormatString(100, 170, GetColor(255, 0, 0), "ゴール");
+			//DrawFormatString(100, 170, GetColor(255, 0, 0), "ゴール");
 			sceneID = SCENE_ID_INIT_CLEAR;
 		}
 	}
@@ -202,7 +202,7 @@ void PlaySceen::Map_erase()
 	}
 	if (Ax > 2752 && Ax < 2912 && Ay > 630 && Ay < 736)
 	{
-		DrawFormatString(100, 300, GetColor(255, 0, 0), "足場消えます");
+		//DrawFormatString(100, 300, GetColor(255, 0, 0), "足場消えます");
 		MapChipData1[22][87] = 3;
 		MapChipData1[22][88] = 3;
 		MapChipData1[22][89] = 3;
@@ -230,10 +230,10 @@ void PlaySceen::Character_Hit_Enemykumo()
 		int By = kumo[i].y;
 		int Bw = kumo[i].h;
 		int Bh = kumo[i].w;
-		DrawBox(Bx - character.GetScreenX(), By - character.GetScreenY(), Bx + Bw - character.GetScreenX(), By + Bh - character.GetScreenY(), GetColor(255, 255, 255), false);
+		//DrawBox(Bx - character.GetScreenX(), By - character.GetScreenY(), Bx + Bw - character.GetScreenX(), By + Bh - character.GetScreenY(), GetColor(255, 255, 255), false);
 		if (Collision::IsHitRect(Ax, Ay, Aw, Ah, Bx, By, Bw, Bh))
 		{
-			DrawFormatString(100, 270, GetColor(255, 0, 0), "雲ヒット");
+			//DrawFormatString(100, 270, GetColor(255, 0, 0), "雲ヒット");
 			character.SetHp(0);
 		}
 	}

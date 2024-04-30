@@ -233,6 +233,6 @@ void CalcFPS()
 void DrawFPS()
 {
 	unsigned int color = GetColor(255, 30, 30);
-	DrawFormatString(0, 0, color, "FPS[%.2f]", frameRateInfo.fps);
+	//DrawFormatString(0, 0, color, "FPS[%.2f]", frameRateInfo.fps);
 
 }
